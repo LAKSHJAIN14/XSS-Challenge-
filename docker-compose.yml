@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+    container_name: xssingg_app
+    depends_on:
+      - bot
+
+  bot:
+    build:
+      context: .
+      dockerfile: Dockerfile  # Same Dockerfile handles both app and bot
+    container_name: xssingg_bot
+    command: ["sleep", "infinity"]  # Keep it alive so Flask can trigger it
